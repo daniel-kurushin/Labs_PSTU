@@ -1,3 +1,4 @@
+//Духанин Алексей, лаб. 6
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
