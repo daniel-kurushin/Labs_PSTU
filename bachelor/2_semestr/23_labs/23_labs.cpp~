@@ -1,0 +1,58 @@
+#include <iostream>
+
+using namespace std;
+
+class Plur
+{
+    private:
+    int length;
+    int * data;
+    public:
+    Plur()
+    {
+        length = 0;
+        data = NULL;
+    }
+    Plur(int in_length)
+    {
+        length = in_length;
+        data = new int [length];
+    }
+    ~Plur()
+    {
+        delete[] data;
+    }
+    int& operator[](int index)
+    {
+        return data[index];
+    }
+    Plur operator*(Plur &in_plur)
+    {
+        for(int counter = 0; counter < length; counter++)
+        {
+            if(data[counter] == in_plur[counter])
+            {
+                
+            }
+        }
+        return 0;
+    }
+    Plur operator--()
+    {
+        return this -> data--;
+    }
+};
+
+int main(int argc, char* argv[])
+{
+    Plur plur_one(15);
+    for(int counter = 0; counter < 15; counter++)
+    {
+        plur_one[counter] = counter;
+        //cout << plur_one[counter] << '\t';
+    }
+    cout << plur_one[13] <<endl;
+    cout << --plur_one << endl;
+    //cout << endl;
+    return 0;
+}
