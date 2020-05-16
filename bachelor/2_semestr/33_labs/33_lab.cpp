@@ -4,20 +4,49 @@
 #include <gtk/gtk.h>
 #include <string>
 #include <cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
+
+GtkWidget *label_h_int;
+GtkWidget *label_m_int;
+GtkWidget *label_s_int;
 
 int all_sec, conver_sec;
 int all_hours = 0;
 int all_min = 0;
+int conver_min   = 0;
+int conver_hours = 0;
+int all_sec_one = 0; 
+int all_sec_two = 0;
+
+const char * h_int = "0";
+//string h_num = to_string(num);
+//const char * h_int = h_num.c_str();
+const char * m_int = "0";
+const char * s_int = "0";
+
+string h_num;
+string m_num;
+string s_num;
+
+
+
 class Time
 {
     private:
     string time;
-    int hours;
-    int min;
-    int sec;
+    int hours = 0;
+    int min = 0;
+    int sec = 0;
     public:
+    void destr()
+    {
+        hours = 0;
+        min =   0;
+        sec =   0;
+    }
     void set_hours(string in_time)
     {
         hours = atoi(in_time.c_str());
@@ -35,8 +64,8 @@ class Time
     }
     void minus(Time &in_time_two)
     {
-        int all_sec_one = 0; 
-        int all_sec_two = 0;
+        all_sec_one = 0; 
+        all_sec_two = 0;
         all_sec = 0;
         all_min = 0;
         all_hours = 0;
@@ -55,11 +84,12 @@ class Time
             all_min = all_min - 60;
         }
         cout << all_hours << " hours " << all_min << " min " << all_sec << " sec " << endl;
+        
     }
     void plus(Time &in_time_two)
     {
-        int all_sec_one = 0; 
-        int all_sec_two = 0;
+        all_sec_one = 0; 
+        all_sec_two = 0;
         all_sec = 0;
         all_min = 0;
         all_hours = 0;
@@ -78,11 +108,12 @@ class Time
             all_min = all_min - 60;
         }
         cout << all_hours << " hours " << all_min << " min " << all_sec << " sec " << endl;
+       
     }
     void time_inter(Time &in_time_two)
     {
-        int all_sec_one = 0; 
-        int all_sec_two = 0;
+        all_sec_one = 0; 
+        all_sec_two = 0;
         all_sec = 0;
         all_min = 0;
         all_hours = 0;
@@ -109,6 +140,23 @@ Time time1;
 Time time2;
 GtkWidget *entry_time1;
 GtkWidget *entry_time2;
+//int num = 0;
+
+
+static void chek_destr(GtkWidget *widget, gpointer data)
+{
+    time1.destr();
+    time2.destr();
+    cout << "Время сброшено" << endl;
+    
+    h_int = "0";
+    m_int = "0";
+    s_int = "0";
+    
+    gtk_label_set_text(GTK_LABEL(label_h_int), h_int);
+    gtk_label_set_text(GTK_LABEL(label_m_int), m_int);
+    gtk_label_set_text(GTK_LABEL(label_s_int), s_int);
+}
 
 static void chek_hours1(GtkWidget *widget, gpointer data)
 {
@@ -149,35 +197,83 @@ static void chek_sec2(GtkWidget *widget, gpointer data)
 static void chek_minus(GtkWidget *widget, gpointer data)
 {
     time1.minus(time2);
+        
+    h_num = to_string(all_hours);
+    m_num = to_string(all_min);
+    s_num = to_string(all_sec);
+    
+    h_int = h_num.c_str();
+    m_int = m_num.c_str();
+    s_int = s_num.c_str();
+    
+    gtk_label_set_text(GTK_LABEL(label_h_int), h_int);
+    gtk_label_set_text(GTK_LABEL(label_m_int), m_int);
+    gtk_label_set_text(GTK_LABEL(label_s_int), s_int);
 }
 
 static void chek_plus(GtkWidget *widget, gpointer data)
 {
     time1.plus(time2);
+    
+    h_num = to_string(all_hours);
+    m_num = to_string(all_min);
+    s_num = to_string(all_sec);
+    
+    h_int = h_num.c_str();
+    m_int = m_num.c_str();
+    s_int = s_num.c_str();
+    
+    gtk_label_set_text(GTK_LABEL(label_h_int), h_int);
+    gtk_label_set_text(GTK_LABEL(label_m_int), m_int);
+    gtk_label_set_text(GTK_LABEL(label_s_int), s_int);
 }
 
 static void chek_inter(GtkWidget *widget, gpointer data)
 {
     time1.time_inter(time2);
+    
+    h_num = to_string(all_hours);
+    m_num = to_string(all_min);
+    s_num = to_string(all_sec);
+    
+    h_int = h_num.c_str();
+    m_int = m_num.c_str();
+    s_int = s_num.c_str();
+    
+    gtk_label_set_text(GTK_LABEL(label_h_int), h_int);
+    gtk_label_set_text(GTK_LABEL(label_m_int), m_int);
+    gtk_label_set_text(GTK_LABEL(label_s_int), s_int);
 }
 
 static void chek_conver(GtkWidget *widget, gpointer data)
 {
     cout << conver_sec << " sec ";
-    int conver_min   = 0;
-    int conver_hours = 0;
+    all_sec = conver_sec;
     while(conver_sec >= 60)
     {
         conver_min++;
         conver_sec = conver_sec - 60;
     }
     cout << conver_min << " min ";
+    all_min = conver_min;
     while(conver_min >= 60)
     {
         conver_hours++;
         conver_min = conver_min - 60;
     }
+    all_hours = conver_hours;
     cout << conver_hours << " hours " << endl;
+    h_num = to_string(all_hours);
+    m_num = to_string(all_min);
+    s_num = to_string(all_sec);
+    
+    h_int = h_num.c_str();
+    m_int = m_num.c_str();
+    s_int = s_num.c_str();
+    
+    gtk_label_set_text(GTK_LABEL(label_h_int), h_int);
+    gtk_label_set_text(GTK_LABEL(label_m_int), m_int);
+    gtk_label_set_text(GTK_LABEL(label_s_int), s_int);
 }
 
 static void activate (GtkApplication* app, gpointer user_data)
@@ -186,7 +282,9 @@ static void activate (GtkApplication* app, gpointer user_data)
     GtkWidget *grid;
     GtkWidget *button;
     
-    GtkWidget *label;
+    GtkWidget *label_h;
+    GtkWidget *label_m;
+    GtkWidget *label_s;
     
     string in_time1;
     
@@ -249,15 +347,38 @@ static void activate (GtkApplication* app, gpointer user_data)
     g_signal_connect_swapped(button, "clicked", G_CALLBACK(chek_conver), window);
     gtk_grid_attach(GTK_GRID(grid), button, 1, 9, 1, 1);
     
-    gchar *str = "Ответ:";
+    char * h   = "hours: ";
+    char * min = "minute: ";
+    char * sec = "seconds: ";
     
-    label = gtk_label_new(str);
-    gtk_grid_attach(GTK_GRID(grid), label, 0, 10, 1, 1);
+    
+    
+    label_h = gtk_label_new(h);
+    gtk_grid_attach(GTK_GRID(grid), label_h, 0, 10, 1, 1);
+    
+    label_h_int = gtk_label_new(h_int);
+    gtk_grid_attach(GTK_GRID(grid), label_h_int, 1, 10, 1, 1);
+    
+    label_m = gtk_label_new(min);
+    gtk_grid_attach(GTK_GRID(grid), label_m, 0, 11, 1, 1);
+    
+    label_m_int = gtk_label_new(m_int);
+    gtk_grid_attach(GTK_GRID(grid), label_m_int, 1, 11, 1, 1);
+    
+    label_s = gtk_label_new(sec);
+    gtk_grid_attach(GTK_GRID(grid), label_s, 0, 12, 1, 1);
+    
+    label_s_int = gtk_label_new(s_int);
+    gtk_grid_attach(GTK_GRID(grid), label_s_int, 1, 12, 1, 1);
     
     button = gtk_button_new_with_label("Quit");
     g_signal_connect_swapped(button, "clicked", G_CALLBACK(gtk_widget_destroy), window);
     
-    gtk_grid_attach(GTK_GRID(grid), button, 0, 11, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), button, 0, 13, 1, 1);
+    
+    button = gtk_button_new_with_label("Сброс");
+    g_signal_connect_swapped(button, "clicked", G_CALLBACK(chek_destr), window);
+    gtk_grid_attach(GTK_GRID(grid), button, 1, 13, 1, 1);
     
     gtk_widget_show_all(window);
 }
