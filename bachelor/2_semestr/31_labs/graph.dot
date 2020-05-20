@@ -1,0 +1,12 @@
+strict graph
+{
+    1 -- 2 [label = "2"] 
+    1 -- 6 [label = "57"]
+    2 -- 3 [label = "3"]
+    2 -- 6 [label = "13"]
+    4 -- 3 [label = "5"]
+    4 -- 2 [label = "8"]
+    4 -- 6 [label = "21"]
+    4 -- 5 [label = "34"]
+    5 -- 6 [label = "45"]
+}
