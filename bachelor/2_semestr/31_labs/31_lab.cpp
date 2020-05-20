@@ -88,7 +88,7 @@ class Graph
                 v[min_index] = 0;
             }
         }while(min_index < max_init);
-        cout << "Кратчиайшее растояние от вершины " << num << endl;
+        cout << "Кратчиайшее растояние от вершины " << num + 1 << endl;
         for(int i = 0; i < 6; i++)
         {
             if(i != num)
@@ -111,7 +111,10 @@ int main(int argc, char* argv[])
     Graph lab;
     lab.make();
     lab.print();
-    lab.min_d(0);
+    for(int i = 0; i < 6; i++)
+    {
+        lab.min_d(i);
+    }
     
     return 0;
 }
