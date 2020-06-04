@@ -1,6 +1,8 @@
 #include "b_tree.h"
 #include <iostream>
 using namespace std;
+int arr_nums[100];
+
 
 void B_tree::init(QGraphicsScene* scene, QGraphicsView* view)
 {
@@ -8,40 +10,80 @@ void B_tree::init(QGraphicsScene* scene, QGraphicsView* view)
     this->_scene = scene;
     this->_view = view;
 }
-
-void B_tree::insert(int a)
+struct Node * in_tree(struct Node * tree, int a)
 {
-    Node* tmp = new Node;
-    tmp->data = a;
-    tmp->left = NULL;
-    tmp->right = NULL;
-
-    if(this->_root == NULL)
+    if(tree == NULL)
     {
-        tmp->p = NULL;
-        this->_root = tmp;
+        tree = (struct Node*)malloc(sizeof(struct Node));
+        tree -> data = a;
+        tree -> left = tree -> right = NULL;
+    }
+    else if (tree -> data >= a)
+    {
+        tree -> right = in_tree(tree -> right, a);
     }
     else
     {
-        Node* cElem = this->_root;
-        Node* parent = NULL;
+        tree -> left = in_tree(tree -> left, a);
+    }
+    return tree;
+}
 
-        while(cElem != NULL)
-        {
-            parent = cElem;
-            cElem = (a < cElem->data) ? cElem->left : cElem->right;
-        }
+void B_tree::walk(Node *p)
+{
+    if (p != NULL)
+    {
+       arr_nums[p -> data] += 1;
+       this -> walk(p->left);
+       this -> walk(p->right);
+    }
+}
 
-        tmp->p = parent;
-        if(a < parent->data)
+void B_tree::chek_nums()
+{
+    for(int i = 0; i < 100; i++)
+    {
+        arr_nums[i] = 0;
+    }
+    this -> walk(this -> _root);
+}
+
+void B_tree::print_max()
+{
+    int max, counter;
+    max = counter = 0;
+    chek_nums();
+    counter = arr_nums[0];
+    for(int i = 1; i < 100; i++)
+    {
+        if(counter < arr_nums[i])
         {
-            parent->left = tmp;
-        }
-        else
-        {
-            parent->right = tmp;
+            counter = arr_nums[i];
+            max = i;
         }
     }
+
+    cout << "Максимальный элемент - " << max << "Количество повторений" << counter << endl;
+}
+
+void B_tree::print_min()
+{
+    int min = 0;
+    chek_nums();
+    for(int i = 1; i < 100; i++)
+    {
+        if(arr_nums[i] == 1)
+        {
+            min = i;
+        }
+    }
+
+    cout << "Единственный элемент - " << min << endl;
+}
+
+void B_tree::insert(int a)
+{
+    this -> _root = in_tree(this -> _root, a);
 }
 
 Node* B_tree::findElem(int val, Node* p)
@@ -50,7 +92,7 @@ Node* B_tree::findElem(int val, Node* p)
     {
         if(val == p->data) return p;
 
-        if(val < p->data)
+        if(val <= p->data)
         {
             return findElem(val, p->left);
         }

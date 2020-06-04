@@ -23,9 +23,12 @@ int main(int argc, char **argv)
     tree->insert(5);
     tree->insert(8);
     tree->insert(12);
-
-
+    tree->insert(13);
+    tree->insert(12);
     tree->show();
+
+    tree->print_max();
+    tree->print_min();
 
     return app.exec();
 }

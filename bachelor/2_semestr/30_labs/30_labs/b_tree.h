@@ -18,10 +18,14 @@ struct Node
 class B_tree
 {
     public:
+        struct Node *tree = NULL;
         void init(QGraphicsScene* scene, QGraphicsView* view);
         void insert(int a);
 
         void show();
+
+        void print_min();
+        void print_max();
 
         Node* findElem(int val);
     protected:
@@ -31,7 +35,8 @@ class B_tree
         QByteArray _prepareGraph();
         void _graphWalk(Node* p,  QTextStream* stream);
         Node* findElem(int val, Node* p);
-
+        void walk(Node *p);
+        void chek_nums();
         Node* _root;
         QGraphicsScene* _scene;
         QGraphicsView* _view;
