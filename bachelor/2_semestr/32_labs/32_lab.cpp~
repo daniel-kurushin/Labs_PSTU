@@ -1,0 +1,174 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+class TSP
+{
+    private:
+    int arr[5][5], arr_work[5][5], arr_zero[5][5];
+    int arr_min_x[5], arr_min_y[5], arr_end[5];
+    int num_road = 0;
+    public:
+    TSP()
+    {
+        ifstream file_roads("roads.txt");
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j < 5; j++)
+            {
+                file_roads >> arr[i][j];
+            }
+        }
+        file_roads.close();
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j < 5; j++)
+            {
+                arr_work[i][j] = arr[i][j];
+                arr_zero [i][j] = 0;
+            }
+            arr_min_x[i] = arr_min_y[i] = arr_end[i] = 0;
+        }
+    } 
+    void print()
+    {
+        cout << "Матрица смежности: " << endl;
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j < 5; j++)
+            {
+                cout << arr[i][j] << '\t';
+            }
+            cout << endl;
+        }
+    }
+    void min_x()
+    {
+        cout << "Минимумы по х: ";
+        int min = 0;
+        for(int i = 0; i < 5; i++)
+        {
+            min = 100;
+            for(int j = 0; j < 5; j++)
+            {
+                if(arr_work[i][j] >= 0)
+                {
+                    if(arr_work[i][j] < min)
+                    {
+                        min = arr_work[i][j];
+                    }
+                }
+            }
+            arr_min_x[i] = min;
+        }
+        for(int i = 0; i < 5; i++)
+        {
+            cout << arr_min_x[i] << '\t';
+        }
+        cout << endl;
+    }
+    void minus_x()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j< 5; j++)
+            {
+                if(arr_work[i][j] > 0)
+                {
+                    arr_work[i][j] -= arr_min_x[i];
+                }
+            }
+        }
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j < 5; j++)
+            {
+                cout << arr_work[i][j] << '\t';
+            }
+            cout << endl;
+        }
+    }
+    void min_y()
+    {
+        int min = 0;
+        for(int i = 0; i < 5; i++)
+        {
+            min = 100;
+            for(int j = 0; j < 5; j++)
+            {
+                if(arr_work[j][i] >= 0)
+                {
+                    if(arr_work[j][i] < min)
+                    {
+                        min = arr_work[j][i];
+                    }
+                }
+            }
+            arr_min_y[i] = min;
+        }
+        for(int i = 0; i < 5; i++)
+        {
+            cout << arr_min_y[i] << '\t';
+        }
+        cout << endl;
+    }
+    void minus_y()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j< 5; j++)
+            {
+                if(arr_work[j][i] > 0)
+                {
+                    arr_work[j][i] -= arr_min_y[i];
+                }
+            }
+        }
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j < 5; j++)
+            {
+                cout << arr_work[i][j] << '\t';
+            }
+            cout << endl;
+        }
+    }
+    void make_arr_zero()
+    {
+        
+    }
+    void subtraction_line()
+    {
+        
+    }
+    void print_roads()
+    {
+        cout << "Готовый путь: " << endl;
+        for(int i = 0; i < 5; i++)
+        {
+            
+        }
+    }
+    void launch_tsp()
+    {
+        
+    }
+};
+
+int main(int argc, char* argv[])
+{
+    TSP lab_32;
+    
+    lab_32.print();
+    cout << endl;
+    lab_32.min_x();
+    cout << endl;
+    lab_32.minus_x();
+    
+    cout << endl;
+    lab_32.min_y();
+    cout << endl;
+    lab_32.minus_y();
+    
+    return 0;
+}
