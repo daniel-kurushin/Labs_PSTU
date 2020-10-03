@@ -11,14 +11,70 @@ int *arr_C = new int[num_c];
 int *arr_I = new int[num_i];
 int *arr_D = new int[num_d];
 
+int simple_arr[10] = {0,1,2,3,5,7,9,11,13,17,19};
+
 void input_arr_A()
 {
-  cout << "Введите количество элементов в множестве А:" << endl;
+  int state = 0;
+  cout << "Введите количество элементов в множестве А(<=10):" << endl;
   cin >> num_a;
-  cout << "Введите значения множества А:" << endl;
-  for (int i = 0; i < num_a; i++)
+  cout << "Ввести ручками?" << endl;
+  cout << "1. Да" << endl;
+  cout << "2. Нет" << endl;
+  cin >> state;
+  if(state)
   {
-    cin >> arr_A[i];
+    cout << "Введите значения множества А:" << endl;
+    for (int i = 0; i < num_a; i++)
+    {
+      cin >> arr_A[i];
+    }
+  }
+  else
+  {
+    cout << "1. Простые числа" << endl;
+    cout << "2. Натуральные числа" << endl;
+    cout << "3. Положительные числа" << endl;
+    cout << "4. Отрицательные числа" << endl;
+    cout << "5. Четные числа" << endl;
+    cout << "6. Нечетные числа" << endl;
+    cin >> state;
+    switch(state)
+    {
+      case 1:
+        for(int i = 0; i < num_a; i++)
+        {
+          arr_A[i] = simple_arr[i];
+        }
+      break;
+      case 2:
+        for(int i = 0; i < num_a; i++)
+        {
+          arr_A[i] = i + 1;
+        }
+      break;
+      case 3:
+        for(int i = 0; i < num_a; i++)
+        {
+          arr_A[i] = i + 1;
+        }
+      break;
+      case 4:
+        for(int i = 0; i < num_a; i++)
+        {
+          arr_A[i] = -1 * (i + 1);
+        }
+      break;
+      case 5:
+        for(int i = 0; i < num_a; i++)
+        {
+          arr_A[i] = 2 * (i + 1);
+        }
+      break;
+      case 6:
+      break;
+    }
+    print_arr_a();
   }
 }
 
