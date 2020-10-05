@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
-
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 int num_a, num_b, num_c, num_i, num_d;
@@ -11,7 +12,44 @@ int *arr_C = new int[num_c];
 int *arr_I = new int[num_i];
 int *arr_D = new int[num_d];
 
-int simple_arr[10] = {0,1,2,3,5,7,9,11,13,17,19};
+int simple_arr[11] = {0,1,2,3,5,7,9,11,13,17,19};
+
+void print_arr_A()
+{
+  for(int i = 0; i < num_a; i++)
+  {
+    cout << arr_A[i];
+  }
+  cout << endl;
+}
+
+void print_arr_B()
+{
+  for(int i = 0; i < num_b; i++)
+  {
+    cout << arr_B[i];
+  }
+  cout << endl;
+}
+
+void print_arr_C()
+{
+  for(int i = 0; i < num_c; i++)
+  {
+    cout << arr_C[i];
+  }
+  cout << endl;
+}
+
+void print_arr_D()
+{
+  cout << "Полученное множество:" << endl;
+  for(int i = 0; i < num_d; i++)
+  {
+    cout << arr_D[i] << '\t';
+  }
+  cout << endl;
+}
 
 void input_arr_A()
 {
@@ -22,7 +60,7 @@ void input_arr_A()
   cout << "1. Да" << endl;
   cout << "2. Нет" << endl;
   cin >> state;
-  if(state)
+  if(state == 1)
   {
     cout << "Введите значения множества А:" << endl;
     for (int i = 0; i < num_a; i++)
@@ -72,31 +110,184 @@ void input_arr_A()
         }
       break;
       case 6:
+        for(int i = 0; i < num_a; i++)
+        {
+          if(i % 2 == 0)
+          {
+            arr_A[i] = i + 11;
+          }
+          else
+          {
+            arr_A[i] = i;
+          }
+        }
       break;
     }
-    print_arr_a();
+    for(int i = 0; i< num_a; i++)
+    {
+      cout << arr_A[i] << " ";
+    }
+    cout << endl;
   }
 }
 
 void input_arr_B()
 {
-  cout << "Введите количество элементов в множестве b:" << endl;
+  int state = 0;
+  cout << "Введите количество элементов в множестве B(<=10):" << endl;
   cin >> num_b;
-  cout << "Введите значения множества B:" << endl;
-  for (int i = 0; i < num_b; i++)
+  cout << "Ввести ручками?" << endl;
+  cout << "1. Да" << endl;
+  cout << "2. Нет" << endl;
+  cin >> state;
+  if(state == 1)
   {
-    cin >> arr_B[i];
+    cout << "Введите значения множества B:" << endl;
+    for (int i = 0; i < num_b; i++)
+    {
+      cin >> arr_B[i];
+    }
+  }
+  else
+  {
+    cout << "1. Простые числа" << endl;
+    cout << "2. Натуральные числа" << endl;
+    cout << "3. Положительные числа" << endl;
+    cout << "4. Отрицательные числа" << endl;
+    cout << "5. Четные числа" << endl;
+    cout << "6. Нечетные числа" << endl;
+    cin >> state;
+    switch(state)
+    {
+      case 1:
+        for(int i = 0; i < num_b; i++)
+        {
+          arr_B[i] = simple_arr[i];
+        }
+      break;
+      case 2:
+        for(int i = 0; i < num_b; i++)
+        {
+          arr_B[i] = i + 1;
+        }
+      break;
+      case 3:
+        for(int i = 0; i < num_b; i++)
+        {
+          arr_B[i] = i + 1;
+        }
+      break;
+      case 4:
+        for(int i = 0; i < num_b; i++)
+        {
+          arr_B[i] = -1 * (i + 1);
+        }
+      break;
+      case 5:
+        for(int i = 0; i < num_b; i++)
+        {
+          arr_B[i] = 2 * (i + 1);
+        }
+      break;
+      case 6:
+        for(int i = 0; i < num_b; i++)
+        {
+          if(i % 2 == 0)
+          {
+            arr_B[i] = i + 11;
+          }
+          else
+          {
+            arr_B[i] = i;
+          }
+        }
+      break;
+    }
+    for(int i = 0; i< num_b; i++)
+    {
+      cout << arr_B[i] << " ";
+    }
+    cout << endl;
   }
 }
 
 void input_arr_c()
 {
-  cout << "Введите количество элементов в множестве c:" << endl;
+  int state = 0;
+  cout << "Введите количество элементов в множестве C(<=10):" << endl;
   cin >> num_c;
-  cout << "Введите значения множества C:" << endl;
-  for (int i = 0; i < num_c; i++)
+  cout << "Ввести ручками?" << endl;
+  cout << "1. Да" << endl;
+  cout << "2. Нет" << endl;
+  cin >> state;
+  if(state == 1)
   {
-    cin >> arr_C[i];
+    cout << "Введите значения множества C:" << endl;
+    for (int i = 0; i < num_c; i++)
+    {
+      cin >> arr_C[i];
+    }
+  }
+  else
+  {
+    cout << "1. Простые числа" << endl;
+    cout << "2. Натуральные числа" << endl;
+    cout << "3. Положительные числа" << endl;
+    cout << "4. Отрицательные числа" << endl;
+    cout << "5. Четные числа" << endl;
+    cout << "6. Нечетные числа" << endl;
+    cin >> state;
+    switch(state)
+    {
+      case 1:
+        for(int i = 0; i < num_c; i++)
+        {
+          arr_C[i] = simple_arr[i];
+        }
+      break;
+      case 2:
+        for(int i = 0; i < num_c; i++)
+        {
+          arr_C[i] = i + 1;
+        }
+      break;
+      case 3:
+        for(int i = 0; i < num_c; i++)
+        {
+          arr_C[i] = i + 1;
+        }
+      break;
+      case 4:
+        for(int i = 0; i < num_c; i++)
+        {
+          arr_C[i] = -1 * (i + 1);
+        }
+      break;
+      case 5:
+        for(int i = 0; i < num_c; i++)
+        {
+          arr_C[i] = 2 * (i + 1);
+        }
+      break;
+      case 6:
+        for(int i = 0; i < num_c; i++)
+        {
+          if(i % 2 == 0)
+          {
+            arr_C[i] = i + 11;
+          }
+          else
+          {
+            arr_C[i] = i;
+          }
+        }
+      break;
+    }
+    for(int i = 0; i< num_c; i++)
+    {
+      cout << arr_C[i] << " ";
+    }
+    cout << endl;
   }
 }
 
@@ -132,13 +323,18 @@ void union_A_B()
 
 void union_A_I()
 {
-  num_d = num_a - 1;
+  num_d = num_a;
   for(int i = 0; i < num_a; i++)
   {
     arr_D[i] = arr_A[i];
+    cout << arr_A[i] << " ";
   }
+  cout << endl;
+  cout << num_a << endl;
+  cout << num_d << endl;
   for(int i = 0; i < num_i; i++)
   {
+    cout << "udfibj" << endl;
     int k = 1;
     for(int j = 0; j < num_a; j++)
     {
@@ -153,6 +349,7 @@ void union_A_I()
       num_d++;
     }
   }
+
 }
 
 void union_I_C()
@@ -261,73 +458,122 @@ void sym_diff_I_C()
 
 }
 
+void negativ_A()
+{
+  for(int i = 0; i < num_a; i++)
+  {
+    arr_A[i] = arr_A[i] + 1;
+  }
+  print_arr_A();
+}
+
+void negativ_B()
+{
+  for(int i = 0; i < num_b; i++)
+  {
+    arr_B[i] = arr_B[i] + 1;
+  }
+  print_arr_B();
+}
+
+void negativ_C()
+{
+  for(int i = 0; i < num_c; i++)
+  {
+    arr_C[i] = arr_C[i] + 1;
+  }
+  print_arr_C();
+}
+
 void chose_set_do()
 {
-  cout << "Операции над множествами:" << endl;
-  cout << "1. Объединение" << endl;
-  cout << "2. Пересечение" << endl;
-  cout << "3. Разность" << endl;
-  cout << "4. Симметрическая разность" << endl;
-  cout << "5. Отрицание" << endl;
-  int chose_A_B, chose_B_C;
-  cout << "Выберете отперацию над множествами А и В" << endl;
-  cin >> chose_A_B;
-  cout << "Выберете отперацию над множествами В и С" << endl;
-  cin >> chose_B_C;
-  if((chose_A_B == 1) and (chose_B_C == 1))
+  int state, chose_A_B, chose_B_C;
+  cout << "Выполнить опецию отрицания?" <<  endl;
+  cout << "1. Да" << endl;
+  cout << "2. Нет" <<endl;
+  cin >> state;
+  if(state == 1)
   {
-    union_A_B();
-    union_I_C();
+    cout << "Над каким множеством выполнить отрицание?" << endl;
+    cout << "1. А" << endl;
+    cout << "2. В" << endl;
+    cout << "3. С" << endl;
+    cin >> state;
+    switch(state)
+    {
+      case 1:
+      negativ_A();
+      chose_set_do();
+      break;
+      case 2:
+      negativ_B();
+      chose_set_do();
+      break;
+      case 3:
+      negativ_C();
+      chose_set_do();
+      break;
+    }
   }
-  else if ((chose_A_B == 1) and (chose_B_C == 2))
+  else
   {
-    crossing_B_C();
-    union_A_I();
-  }
-  else if ((chose_A_B == 1) and (chose_B_C == 3))
-  {
-    union_A_B();
-    diff_I_C();
-  }
-  else if ((chose_A_B == 1) and (chose_B_C == 4))
-  {
-    union_A_B();
-    sym_diff_I_C();
-  }
-  else if((chose_A_B == 2) and (chose_B_C == 1))
-  {
-    crossing_A_B();
-    union_I_C();
-  }
-  else if((chose_A_B == 2) and (chose_B_C == 2))
-  {
-    crossing_A_B();
-    crossing_I_C();
-  }
-  else if((chose_A_B == 2) and (chose_B_C == 3))
-  {
-    crossing_A_B();
-    diff_I_C();
-  }
-  else if((chose_A_B == 2) and (chose_B_C == 4))
-  {
-    crossing_A_B();
-    sym_diff_I_C();
+    cout << "Операции над множествами:" << endl;
+    cout << "1. Объединение" << endl;
+    cout << "2. Пересечение" << endl;
+    cout << "3. Разность" << endl;
+    cout << "4. Симметрическая разность" << endl;
+
+    cout << "Выберете отперацию над множествами А и В" << endl;
+    cin >> chose_A_B;
+    cout << "Выберете отперацию над множествами В и С" << endl;
+    cin >> chose_B_C;
+    if((chose_A_B == 1) and (chose_B_C == 1))
+    {
+      union_A_B();
+      union_I_C();
+    }
+    else if ((chose_A_B == 1) and (chose_B_C == 2))
+    {
+      crossing_B_C();
+      union_A_I();
+    }
+    else if ((chose_A_B == 1) and (chose_B_C == 3))
+    {
+      union_A_B();
+      diff_I_C();
+    }
+    else if ((chose_A_B == 1) and (chose_B_C == 4))
+    {
+      union_A_B();
+      sym_diff_I_C();
+    }
+    else if((chose_A_B == 2) and (chose_B_C == 1))
+    {
+      crossing_A_B();
+      union_I_C();
+    }
+    else if((chose_A_B == 2) and (chose_B_C == 2))
+    {
+      crossing_A_B();
+      crossing_I_C();
+    }
+    else if((chose_A_B == 2) and (chose_B_C == 3))
+    {
+      crossing_A_B();
+      diff_I_C();
+    }
+    else if((chose_A_B == 2) and (chose_B_C == 4))
+    {
+      crossing_A_B();
+      sym_diff_I_C();
+    }
   }
 }
 
-void print_arr_D()
-{
-  cout << "Полученное множество:" << endl;
-  for(int i = 0; i < num_d; i++)
-  {
-    cout << arr_D[i] << '\t';
-  }
-  cout << endl;
-}
 
 int main()
 {
+  srand(time(NULL));
   input_arr_A();
   input_arr_B();
   input_arr_c();
