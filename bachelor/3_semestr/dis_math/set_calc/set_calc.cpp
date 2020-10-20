@@ -4,7 +4,7 @@
 #include <ctime>
 using namespace std;
 
-int num_a, num_b, num_c, num_i, num_d;
+int num_a, num_b, num_c, num_i, num_d, num_n;
 
 int *arr_A = new int[num_a];
 int *arr_B = new int[num_b];
@@ -13,12 +13,35 @@ int *arr_I = new int[num_i];
 int *arr_D = new int[num_d];
 
 int simple_arr[11] = {0,1,2,3,5,7,9,11,13,17,19};
+int negativ_arr[40];
+
+void print_equ()
+{
+  for(int i = 0; i < 30; i++)
+  {
+    std::cout << "=";
+  }
+  cout << endl;
+}
+
+void make_arr_negativ()
+{
+  int j = -20;
+  for(int i = 0; i <= 40; i++)
+  {
+    negativ_arr[i] = j;
+    j++;
+    cout << negativ_arr[i] << " ";
+  }
+  num_n = 40;
+  cout << endl;
+}
 
 void print_arr_A()
 {
   for(int i = 0; i < num_a; i++)
   {
-    cout << arr_A[i];
+    cout << arr_A[i] << " ";
   }
   cout << endl;
 }
@@ -27,7 +50,7 @@ void print_arr_B()
 {
   for(int i = 0; i < num_b; i++)
   {
-    cout << arr_B[i];
+    cout << arr_B[i] << " ";
   }
   cout << endl;
 }
@@ -36,7 +59,7 @@ void print_arr_C()
 {
   for(int i = 0; i < num_c; i++)
   {
-    cout << arr_C[i];
+    cout << arr_C[i] << " ";
   }
   cout << endl;
 }
@@ -46,7 +69,7 @@ void print_arr_D()
   cout << "Полученное множество:" << endl;
   for(int i = 0; i < num_d; i++)
   {
-    cout << arr_D[i] << '\t';
+    cout << arr_D[i] << " ";
   }
   cout << endl;
 }
@@ -460,29 +483,138 @@ void sym_diff_I_C()
 
 void negativ_A()
 {
+  int num_prom = 40;
+  int arr_prom[40];
+  for(int i = 0; i <= num_n; i++)
+  {
+    arr_prom[i] = negativ_arr[i];
+  }
   for(int i = 0; i < num_a; i++)
   {
-    arr_A[i] = arr_A[i] + 1;
+    for(int j = 0; j <= num_prom; j++)
+    {
+      if(arr_A[i] == arr_prom[j])
+      {
+        int k = j;
+        while(k <= num_prom)
+        {
+          arr_prom[k] = arr_prom[k + 1];
+          k++;
+        }
+      }
+    }
   }
+  num_prom = num_prom - num_a;
+  for(int i = 0; i <= num_prom; i++)
+  {
+    //cout << arr_prom[i] << " ";
+    arr_A[i] = arr_prom[i];
+  }
+  cout << endl;
+  num_a = num_prom + 1;
   print_arr_A();
 }
 
 void negativ_B()
 {
+  int num_prom = 40;
+  int arr_prom[40];
+  for(int i = 0; i <= num_n; i++)
+  {
+    arr_prom[i] = negativ_arr[i];
+  }
   for(int i = 0; i < num_b; i++)
   {
-    arr_B[i] = arr_B[i] + 1;
+    for(int j = 0; j <= num_prom; j++)
+    {
+      if(arr_B[i] == arr_prom[j])
+      {
+        int k = j;
+        while(k <= num_prom)
+        {
+          arr_prom[k] = arr_prom[k + 1];
+          k++;
+        }
+      }
+    }
   }
+  num_prom = num_prom - num_b;
+  for(int i = 0; i <= num_prom; i++)
+  {
+    //cout << arr_prom[i] << " ";
+    arr_B[i] = arr_prom[i];
+  }
+  cout << endl;
+  num_b = num_prom + 1;
   print_arr_B();
 }
 
 void negativ_C()
 {
+  int num_prom = 40;
+  int arr_prom[40];
+  for(int i = 0; i <= num_n; i++)
+  {
+    arr_prom[i] = negativ_arr[i];
+  }
   for(int i = 0; i < num_c; i++)
   {
-    arr_C[i] = arr_C[i] + 1;
+    for(int j = 0; j <= num_prom; j++)
+    {
+      if(arr_C[i] == arr_prom[j])
+      {
+        int k = j;
+        while(k <= num_prom)
+        {
+          arr_prom[k] = arr_prom[k + 1];
+          k++;
+        }
+      }
+    }
   }
+  num_prom = num_prom - num_c;
+  for(int i = 0; i <= num_prom; i++)
+  {
+    //cout << arr_prom[i] << " ";
+    arr_C[i] = arr_prom[i];
+  }
+  cout << endl;
+  num_c = num_prom + 1;
   print_arr_C();
+}
+
+void negativ_D()
+{
+  int num_prom = 40;
+  int arr_prom[40];
+  for(int i = 0; i <= num_n; i++)
+  {
+    arr_prom[i] = negativ_arr[i];
+  }
+  for(int i = 0; i < num_d; i++)
+  {
+    for(int j = 0; j <= num_prom; j++)
+    {
+      if(arr_D[i] == arr_prom[j])
+      {
+        int k = j;
+        while(k <= num_prom)
+        {
+          arr_prom[k] = arr_prom[k + 1];
+          k++;
+        }
+      }
+    }
+  }
+  num_prom = num_prom - num_d;
+  for(int i = 0; i <= num_prom; i++)
+  {
+    //cout << arr_prom[i] << " ";
+    arr_D[i] = arr_prom[i];
+  }
+  cout << endl;
+  num_d = num_prom + 1;
+  print_arr_D();
 }
 
 void chose_set_do()
@@ -503,14 +635,17 @@ void chose_set_do()
     {
       case 1:
       negativ_A();
+      print_equ();
       chose_set_do();
       break;
       case 2:
       negativ_B();
+      print_equ();
       chose_set_do();
       break;
       case 3:
       negativ_C();
+      print_equ();
       chose_set_do();
       break;
     }
@@ -567,6 +702,38 @@ void chose_set_do()
       crossing_A_B();
       sym_diff_I_C();
     }
+    else if((chose_A_B == 3) and (chose_B_C == 1))
+    {
+
+    }
+    else if((chose_A_B == 3) and (chose_B_C == 2))
+    {
+
+    }
+    else if((chose_A_B == 3) and (chose_B_C == 3))
+    {
+
+    }
+    else if((chose_A_B == 3) and (chose_B_C == 4))
+    {
+
+    }
+    else if((chose_A_B == 4) and (chose_B_C == 1))
+    {
+
+    }
+    else if((chose_A_B == 4) and (chose_B_C == 2))
+    {
+
+    }
+    else if((chose_A_B == 4) and (chose_B_C == 3))
+    {
+
+    }
+    else if((chose_A_B == 4) and (chose_B_C == 4))
+    {
+
+    }
   }
 }
 
@@ -574,9 +741,13 @@ void chose_set_do()
 int main()
 {
   srand(time(NULL));
+  make_arr_negativ();
   input_arr_A();
+  print_equ();
   input_arr_B();
+  print_equ();
   input_arr_c();
+  print_equ();
   chose_set_do();
   print_arr_D();
   return 0;
