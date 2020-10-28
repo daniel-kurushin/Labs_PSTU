@@ -400,6 +400,36 @@ void union_I_C()
   }
 }
 
+void union_B_C();
+{
+  num_i = num_b - 1;
+  for(int i = 0; i < num_b; i++)
+  {
+    arr_I[i] = arr_B[i];
+  }
+  for(int i = 0; i < num_c; i++)
+  {
+    int k = 1;
+    for(int j = 0; j < num_b; j++)
+    {
+      if(arr_I[j] == arr_C[i])
+      {
+        k++;
+      }
+    }
+    if(k)
+    {
+      arr_I[num_i] = arr_C[i];
+      num_i++;
+    }
+  }
+  for(int i = 0; i < num_i; i++)
+  {
+    cout <<  arr_I[i];
+  }
+  cout << endl;
+}
+
 void crossing_A_B()
 {
   num_i = 0;
@@ -448,37 +478,200 @@ void crossing_I_C()
   }
 }
 
-void diff_I_C()
+void diff_A_B()
 {
-  num_d = num_i;
-  for(int i = 0; i < num_i; i++)
+  num_i = 0;
+  for(int i = 0; i < num_a; i++)
   {
-    arr_D[i] = arr_I[i];
-  }
-  for(int i = 0; i < num_c; i++)
-  {
-    for(int j = 0; j < num_i; j++)
+    int count = 0;
+    for(int j = 0; j < num_b; j++)
     {
-      if(arr_D[j] == arr_C[i])
+      if(arr_A[i] != arr_B[j])
       {
-        for(int k = j; k < num_d; k++)
-        {
-          arr_D[k] = arr_D[k + 2];
-        }
-        num_d = num_d - 2;
-      }
-      else
-      {
-        arr_D[num_d] = arr_C[i];
-        num_d++;
+        count++;
       }
     }
+    count++;
+    if(count == num_b)
+    {
+      arr_I[num_i] = arr_A[i];
+      num_i++;
+    }
   }
+  for(int i = 0; i < num_i; i++)
+  {
+    cout << arr_I[i] << "  ";
+  }
+  cout << endl;
+}
+
+void diff_A_I()
+{
+  num_d = 0;
+  for(int i = 0; i < num_a; i++)
+  {
+    int count = 0;
+    for(int j = 0; j < num_i; j++)
+    {
+      if(arr_A[i] != arr_I[j])
+      {
+        count++;
+      }
+    }
+    count++;
+    if(count == num_i)
+    {
+      arr_D[num_i] = arr_A[i];
+      num_d++;
+    }
+  }
+  for(int i = 0; i < num_d; i++)
+  {
+    cout << arr_D[i] << "  ";
+  }
+  cout << endl;
+}
+
+void diff_B_C()
+{
+  num_i = 0;
+  for(int i = 0; i < num_b; i++)
+  {
+    int count = 0;
+    for(int j = 0; j < num_c; j++)
+    {
+      if(arr_B[i] != arr_C[j])
+      {
+        count++;
+      }
+    }
+    count++;
+    if(count == num_c)
+    {
+      arr_I[num_i] = arr_B[i];
+      num_i++;
+    }
+  }
+  for(int i = 0; i < num_i; i++)
+  {
+    cout << arr_I[i] << "  ";
+  }
+  cout << endl;
+}
+
+void diff_I_C()
+{
+  num_d = 0;
+  for(int i = 0; i < num_i; i++)
+  {
+    int count = 0;
+    for(int j = 0; j < num_c; j++)
+    {
+      if(arr_I[i] != arr_C[j])
+      {
+        count++;
+      }
+    }
+    count++;
+    if(count == num_c)
+    {
+      arr_D[num_d] = arr_I[i];
+      num_i++;
+    }
+  }
+  for(int i = 0; i < num_d; i++)
+  {
+    cout << arr_D[i] << "  ";
+  }
+  cout << endl;
+}
+
+void sym_diff_A_B()
+{
+  num_i = 0;
+  for(int i = 0; i < num_a; i++)
+  {
+    int count = 0;
+    for(int j = 0; j < num_b; j++)
+    {
+      if(arr_A[i] != arr_B[j])
+      {
+        count++;
+      }
+    }
+    count++;
+    if(count == num_b)
+    {
+      arr_I[num_i] = arr_A[i];
+      num_i++;
+    }
+  }
+  for(int i = 0; i < num_b; i++)
+  {
+    int count = 0;
+    for(int j = 0; j < num_a; j++)
+    {
+      if(arr_B[i] != arr_A[j])
+      {
+        count++;
+      }
+    }
+    count++;
+    if(count == num_a)
+    {
+      arr_I[num_i] = arr_B[i];
+      num_i++;
+    }
+  }
+  for(int i = 0; i < num_i; i++)
+  {
+    cout << arr_I[i] << " ";
+  }
+  cout << endl;
 }
 
 void sym_diff_I_C()
 {
-
+  num_d = 0;
+  for(int i = 0; i < num_i; i++)
+  {
+    int count = 0;
+    for(int j = 0; j < num_c; j++)
+    {
+      if(arr_I[i] != arr_C[j])
+      {
+        count++;
+      }
+    }
+    count++;
+    if(count == num_c)
+    {
+      arr_D[num_d] = arr_I[i];
+      num_d++;
+    }
+  }
+  for(int i = 0; i < num_c; i++)
+  {
+    int count = 0;
+    for(int j = 0; j < num_i; j++)
+    {
+      if(arr_C[i] != arr_I[j])
+      {
+        count++;
+      }
+    }
+    count++;
+    if(count == num_i)
+    {
+      arr_D[num_d] = arr_C[i];
+      num_d++;
+    }
+  }
+  for(int i = 0; i < num_d; i++)
+  {
+    cout << arr_D[i] << " ";
+  }
+  cout << endl;
 }
 
 void negativ_A()
@@ -704,35 +897,43 @@ void chose_set_do()
     }
     else if((chose_A_B == 3) and (chose_B_C == 1))
     {
-
+      union_B_C();
+      diff_A_I();
     }
     else if((chose_A_B == 3) and (chose_B_C == 2))
     {
-
+      crossing_B_C();
+      diff_A_I();
     }
     else if((chose_A_B == 3) and (chose_B_C == 3))
     {
-
+      diff_A_B();
+      diff_I_C();
     }
     else if((chose_A_B == 3) and (chose_B_C == 4))
     {
-
+      diff_A_B();
+      sym_diff_I_C();
     }
     else if((chose_A_B == 4) and (chose_B_C == 1))
     {
-
+      union_B_C();
+      sym_diff_A_I();
     }
     else if((chose_A_B == 4) and (chose_B_C == 2))
     {
-
+      crossing_B_C();
+      sym_diff_A_I();
     }
     else if((chose_A_B == 4) and (chose_B_C == 3))
     {
-
+      diff_B_C();
+      sym_diff_A_I();
     }
     else if((chose_A_B == 4) and (chose_B_C == 4))
     {
-
+      sym_diff_A_B();
+      sym_diff_I_C();
     }
   }
 }
