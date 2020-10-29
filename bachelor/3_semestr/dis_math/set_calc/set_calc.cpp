@@ -400,7 +400,7 @@ void union_I_C()
   }
 }
 
-void union_B_C();
+void union_B_C()
 {
   num_i = num_b - 1;
   for(int i = 0; i < num_b; i++)
@@ -664,6 +664,50 @@ void sym_diff_I_C()
     if(count == num_i)
     {
       arr_D[num_d] = arr_C[i];
+      num_d++;
+    }
+  }
+  for(int i = 0; i < num_d; i++)
+  {
+    cout << arr_D[i] << " ";
+  }
+  cout << endl;
+}
+
+void sym_diff_A_I()
+{
+  num_d = 0;
+  for(int i = 0; i < num_a; i++)
+  {
+    int count = 0;
+    for(int j = 0; j < num_i; j++)
+    {
+      if(arr_A[i] != arr_I[j])
+      {
+        count++;
+      }
+    }
+    count++;
+    if(count == num_i)
+    {
+      arr_D[num_d] = arr_A[i];
+      num_d++;
+    }
+  }
+  for(int i = 0; i < num_i; i++)
+  {
+    int count = 0;
+    for(int j = 0; j < num_a; j++)
+    {
+      if(arr_I[i] != arr_A[j])
+      {
+        count++;
+      }
+    }
+    count++;
+    if(count == num_a)
+    {
+      arr_D[num_d] = arr_I[i];
       num_d++;
     }
   }
