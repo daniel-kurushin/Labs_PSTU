@@ -29,3 +29,29 @@ Sub Wane (a, b, c)
     End if
   End if
 End Sub
+
+'Попарный минимум Аргументов
+
+ 'Максимальный аргумент
+
+ d = 20
+ e = 40
+ f = 70
+
+ Max d, e, f
+
+ Sub Max (a, b, c)
+  if a > b then
+    if a > c then
+      MsgBox a
+    else
+      MsgBox c
+    End if
+  else if b > c then
+    MsgBox b
+  else
+    MsgBox c
+  End if
+End Sub
+
+'Минимальный нечетный аргумент
