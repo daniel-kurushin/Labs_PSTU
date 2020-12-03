@@ -17,7 +17,7 @@ d = 3
 e = 5
 f = 7
 
-Wane d, e, f
+Max d, e, f
 
 
 
