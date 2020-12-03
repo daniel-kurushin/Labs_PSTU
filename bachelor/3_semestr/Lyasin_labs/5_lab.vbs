@@ -47,7 +47,7 @@ End Sub
     else
       MsgBox c
     End if
-  else if b > c then
+  elseif b > c then
     MsgBox b
   else
     MsgBox c
