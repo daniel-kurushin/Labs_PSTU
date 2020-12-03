@@ -17,7 +17,7 @@ d = 3
 e = 5
 f = 7
 
-Max d, e, f
+Wane d, e, f
 
 
 
@@ -29,7 +29,7 @@ MsgBox "Максимальный аргумент"
  e = 40
  f = 70
 
- Wane d, e, f
+ Max d, e, f
 
  Sub Wane (a, b, c)
    if a > b then
