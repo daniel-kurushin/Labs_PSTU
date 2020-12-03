@@ -29,7 +29,7 @@ MsgBox "Максимальный аргумент"
  e = 40
  f = 70
 
- Max d, e, f
+ Wane d, e, f
 
  Sub Wane (a, b, c)
    if a > b then
@@ -42,6 +42,7 @@ MsgBox "Максимальный аргумент"
      Msgbox b
      End if
    End if
+   MsgBox "ghgh"
  End Sub
 
  Sub Max (a, b, c)
