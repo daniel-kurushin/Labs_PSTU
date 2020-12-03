@@ -41,8 +41,13 @@ MsgBox "Максимальный аргумент"
      Msgbox c
      Msgbox b
      End if
+   elseif b > c then
+    MsgBox b
+   else
+    MsgBox c
+    MsgBox b
+    Msgbox a
    End if
-   MsgBox "ghgh"
  End Sub
 
  Sub Max (a, b, c)
