@@ -31,6 +31,16 @@ MsgBox "Максимальный аргумент"
 
  Max d, e, f
 
+ 'Минимальный нечетный аргумент
+
+MsgBox "Минимальный нечетный аргумент"
+
+d = 3
+e = 5
+f = 7
+
+Min d, e, f
+
  Sub Wane (a, b, c)
    if a > b then
      if a > c then
@@ -64,4 +74,16 @@ MsgBox "Максимальный аргумент"
   End if
 End Sub
 
-'Минимальный нечетный аргумент
+Sub Min (a, b, c)
+ if a < b then
+   if a < c then
+     MsgBox a
+   else
+     MsgBox c
+   End if
+ elseif b < c then
+   MsgBox b
+ else
+   MsgBox c
+ End if
+End Sub
