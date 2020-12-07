@@ -23,6 +23,28 @@ Wane d, e, f
 
 'Попарный минимум Аргументов
 
+MsgBox "Попарный минимум Аргументов"
+
+Dim i
+dim arr(9)
+i = 0
+MsgBox "Исходный массив"
+While i < 10
+  arr(i) = i + 4
+  i = i + 1
+  MsgBox arr(i)
+Wend
+MsgBox "Попарные минимумы"
+i = 0
+While i < 10
+  if arr(i) < arr(i + 1)
+    MsgBox "(" & i & "|" & i+1 & ")" & " = " & arr(i)
+  else
+    MsgBox "(" & i & "|" & i+1 & ")" & " = " & arr(i + 1)
+  End if
+  i = i + 2
+Wend
+
 MsgBox "Максимальный аргумент"
 
  d = 20
