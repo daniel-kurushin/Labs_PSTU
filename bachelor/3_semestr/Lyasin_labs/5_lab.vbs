@@ -37,7 +37,7 @@ Wend
 MsgBox "Попарные минимумы"
 i = 0
 While i < 10
-  if arr(i) < arr(i + 1)
+  if arr(i) < arr(i + 1) then
     MsgBox "(" & i & "|" & i+1 & ")" & " = " & arr(i)
   else
     MsgBox "(" & i & "|" & i+1 & ")" & " = " & arr(i + 1)
