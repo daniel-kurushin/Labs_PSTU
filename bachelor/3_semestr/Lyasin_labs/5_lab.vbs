@@ -26,13 +26,13 @@ Wane d, e, f
 MsgBox "Попарный минимум Аргументов"
 
 Dim i
-dim arr(9)
+Dim arr(9)
 i = 0
 MsgBox "Исходный массив"
-While i < 10
+While i < 9
   arr(i) = i + 4
-  i = i + 1
   MsgBox arr(i)
+  i = i + 1
 Wend
 MsgBox "Попарные минимумы"
 i = 0
