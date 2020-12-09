@@ -31,9 +31,10 @@ i = 0
 MsgBox "Исходный массив"
 While i < 9
   arr(i) = i + 4
-  MsgBox arr(i)
+
   i = i + 1
 Wend
+MsgBox arr(3)
 MsgBox "Попарные минимумы"
 i = 0
 While i < 10
