@@ -39,6 +39,12 @@ i = 0
 While i < 10
   if i = 8 then
     i = i - 1
+    if arr(i) < arr(i + 1) then
+      MsgBox "(" & i & "|" & i+1 & ")" & " = " & arr(i)
+    else
+      MsgBox "(" & i & "|" & i+1 & ")" & " = " & arr(i + 1)
+    End if
+      i = i + 4
   else
     if arr(i) < arr(i + 1) then
       MsgBox "(" & i & "|" & i+1 & ")" & " = " & arr(i)
