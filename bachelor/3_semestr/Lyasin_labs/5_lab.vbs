@@ -37,7 +37,7 @@ Wend
 MsgBox "Попарные минимумы"
 i = 0
 While i < 10
-  if i == 8 then
+  if i = 8 then
     i = i - 1
   else
     if arr(i) < arr(i + 1) then
