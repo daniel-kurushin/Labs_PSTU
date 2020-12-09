@@ -31,19 +31,22 @@ i = 0
 MsgBox "Исходный массив"
 While i < 9
   arr(i) = i + 4
-
+  MsgBox arr(i)
   i = i + 1
 Wend
-MsgBox arr(3)
 MsgBox "Попарные минимумы"
 i = 0
 While i < 10
-  if arr(i) < arr(i + 1) then
-    MsgBox "(" & i & "|" & i+1 & ")" & " = " & arr(i)
+  if i == 8 then
+    i = i - 1
   else
-    MsgBox "(" & i & "|" & i+1 & ")" & " = " & arr(i + 1)
+    if arr(i) < arr(i + 1) then
+      MsgBox "(" & i & "|" & i+1 & ")" & " = " & arr(i)
+    else
+      MsgBox "(" & i & "|" & i+1 & ")" & " = " & arr(i + 1)
+    End if
+      i = i + 2
   End if
-  i = i + 2
 Wend
 
 MsgBox "Максимальный аргумент"
