@@ -105,6 +105,11 @@ Min d, e, f
 'Вывести нечетные аргу по возрастанию
 MsgBox "Вывести нечетные аргу по возрастанию"
 
+d = 3
+e = 5
+f = 7
+
+
 Wane d, e, f
 
 Sub Wane (a, b, c)
@@ -116,6 +121,16 @@ Sub Wane (a, b, c)
     else
       MsgBox c
     End if
+  End if
+  if b < c then
+    MsgBox b
+  else
+    MsgBox c
+  End if
+  if c < a tnen
+    MsgBox a
+  else
+    MsgBox c
   End if
 End Sub
 
