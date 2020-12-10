@@ -114,15 +114,8 @@ Sub Wane (a, b, c)
     elseif b < c then
       MsgBox b
     else
-    Msgbox c
-    Msgbox b
+      MsgBox c
     End if
-  elseif b < c then
-   MsgBox b
-  else
-   MsgBox c
-   MsgBox b
-   Msgbox a
   End if
 End Sub
 
