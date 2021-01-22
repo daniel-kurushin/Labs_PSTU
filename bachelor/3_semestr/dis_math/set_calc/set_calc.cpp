@@ -277,7 +277,7 @@ void input_arr_c()
       case 3:
         for(int i = 0; i < num_c; i++)
         {
-          arr_C[i] = i + 1;
+          arr_C[i] = i * 2;
         }
       break;
       case 4:

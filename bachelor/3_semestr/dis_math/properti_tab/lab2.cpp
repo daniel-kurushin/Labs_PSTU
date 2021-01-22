@@ -138,8 +138,10 @@ void input_arr()
 	{
 		for(int j = 0; j < n_arr; j++)
 		{
+			cout << "Элемент" << i << " " << j << " ";
 			cin >> arr[i][j];
 		}
+		cout << endl;
 	}
 
 	//Заменяются все элементы на 1(кроме 0)
@@ -181,55 +183,55 @@ void properties()
 	{
 		cout << "Таблица обладает рефлексивностью"     << endl;
 	}
-	else if(antirefl)
+	if(antirefl)
 	{
 		cout << "Таблица обладает антирефлексивностью" << endl;
 	}
-	else if(simm)
+	if(simm)
 	{
 		cout << "Таблица обладает симметричностью"     << endl;
 	}
-	else if(antisimm)
+	if(antisimm)
 	{
 		cout << "Таблица обладает антисимметричностью" << endl;
 	}
-	else if(asimm)
+	if(asimm)
 	{
 		cout << "Таблица обладает ассиметричностью"    << endl;
 	}
-	else if(conn)
+	if(conn)
 	{
 		cout << "Таблица обладает связностью"          << endl;
 	}
-	else if(tran)
+	if(tran)
 	{
 		cout << "Таблица обладает транзитивностью"     << endl;
 	}
-	else if(!refl)
+	if(!refl)
 	{
 		cout << "Таблица не обладает рефлексивностью"     << endl;
 	}
-	else if(!antirefl)
+	if(!antirefl)
 	{
 		cout << "Таблица не обладает антирефлексивностью" << endl;
 	}
-	else if(!simm)
+	if(!simm)
 	{
 		cout << "Таблица не обладает симметричностью"     << endl;
 	}
-	else if(!antisimm)
+	if(!antisimm)
 	{
 		cout << "Таблица не обладает антисимметричностью" << endl;
 	}
-	else if(!asimm)
+	if(!asimm)
 	{
 		cout << "Таблица не обладает ассиметричностью"    << endl;
 	}
-	else if(!conn)
+	if(!conn)
 	{
 		cout << "Таблица не обладает связностью"          << endl;
 	}
-	else if(!tran)
+	if(!tran)
 	{
 		cout << "Таблица не обладает транзитивностью"     << endl;
 	}
