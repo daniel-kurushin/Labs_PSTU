@@ -24,25 +24,26 @@ xyz = [[0, 0, 0],
        [1, 1, 1]]
     
 if __name__== "__main__":
-    vec = np.array([int(vec) for vec in input("input vec").split()])
+    vec = np.array([int(vec) for vec in input("input vec").split()]) #ввод вектора исходной функции
     #vec = np.array([1, 1, 0, 1, 1, 0, 0, 1])
-    if len(vec) == 8:    
+    if len(vec) == 8:    #если количество элементов исходного вектора не равно 8 то программа не будет выполняться
         for i in range(len(vec)):
             if vec[i]:
-                minterms += [xyz[i]]
+                minterms += [xyz[i]] #заполнеие списка значениемями таблицы истинности при которых значения вктора равно 1
             else:
-                dontcares += [xyz[i]]
-        r = pd.DataFrame(minterms)
-        for i in range(len(minterms)):
+                dontcares += [xyz[i]] #заполнеие списка значениемями таблицы истинности при которых значения вктора равно 0
+        r = pd.DataFrame(minterms) # инициализация таблицы для вывода сднф
+        for i in range(len(minterms)): #инверсия элементов таблицы
             for j in range(3):
                 if r.iloc[i, j]:
                     r.iloc[i, j] = 0
                 else:
                     r.iloc[i, j] = 1
+        #выполнение сднф
         sdnf = (r.apply(lambda r: '({}&{}&{})'.format('~'*r[0] + 'x', '~'*r[1] + 'y', '~'*r[2] + 'z'), axis=1).str.cat(sep = ' | '))
         print("СДНФ:")
-        print(sdnf)
+        print(sdnf) #вывод сднф пользователю
         print("Минимизированная ДНФ")
-        print(SOPform([x, y, z], minterms))
+        print(SOPform([x, y, z], minterms)) #вывод минимизированной сднф
     
   
