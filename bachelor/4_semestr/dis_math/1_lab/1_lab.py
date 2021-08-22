@@ -6,9 +6,14 @@ Created on Thu Apr 29 11:50:37 2021
 @author: honepa
 """
 from arr import x
-import os
 from graphviz import Source
 import numpy as np
+
+counter = 0
+for i in range(len(x)):
+    for j in range(counter):
+        x[i][j] = 0
+    counter = counter + 1
 
 temp= "digraph G {"
 incent_str = str()
@@ -16,9 +21,7 @@ count = int()
 for i in range(len(x)):
     for j in range(len(x)):
         if(x[i][j]):
-            #print(i)
-            #print(j)
-            temp += " " + str(i + 1) + " -> " + str(j + 1) + " "
+            temp += " " + str(i + 1) + " -- " + str(j + 1) + " "
             incent_str += "|"+ str(i + 1) + "-" + str(j + 1) + "|"
             count += 1
 
@@ -44,5 +47,3 @@ for i in range(len(x)):
     print('\n')
 s = Source(temp, filename="graph.gv", format="png")
 s.view()
-
-#os.system("xdot -f circo graph.gv")
