@@ -5,13 +5,17 @@ Created on 2.09.2021
 
 @author: honepa
 """
-from collections import OrderedDict
+
+import math
 
 def chek_line(x, y, x1, x2, y1, y2):
     if y == (x * (y2 - y1) - x1 * (y2 + y1) + y1 * (x2 + x1))/(x2 - x1):
         return 1
     else:
         return 0
+
+def line(y, x1, y1, x2, y2):
+    return (y * (x2 - x1) - y1 * (x2 + x1) + x1 * (y2 + y1))/(y2 - y1)
 
 def count_pipe_line(x1, y1, x2, y2):
     counter = 0
@@ -20,7 +24,7 @@ def count_pipe_line(x1, y1, x2, y2):
             find = list()
             find.append(x1)
             find.append(y)
-            all_points.append(find)
+            ext_points.append(find)
             del find
             counter += 1
         return counter
@@ -29,7 +33,7 @@ def count_pipe_line(x1, y1, x2, y2):
             find = list()
             find.append(x1)
             find.append(y)
-            all_points.append(find)
+            ext_points.append(find)
             del find
             counter += 1
         return counter
@@ -43,7 +47,7 @@ def count_horizon_line(x1, y1, x2, y2):
             find = list()
             find.append(x)
             find.append(y1)
-            all_points.append(find)
+            ext_points.append(find)
             del find
             counter += 1
         return counter
@@ -52,7 +56,7 @@ def count_horizon_line(x1, y1, x2, y2):
             find = list()
             find.append(x)
             find.append(y1)
-            all_points.append(find)
+            ext_points.append(find)
             del find
             counter += 1
         return counter
@@ -68,7 +72,7 @@ def count_pozitiveK_line(x1, y1, x2, y2):
                     find = list()
                     find.append(x)
                     find.append(y)
-                    all_points.append(find)
+                    ext_points.append(find)
                     del find
                     counter += 1
         return counter
@@ -80,7 +84,7 @@ def count_pozitiveK_line(x1, y1, x2, y2):
                     find = list()
                     find.append(x)
                     find.append(y)
-                    all_points.append(find)
+                    ext_points.append(find)
                     del find
                     counter += 1
         return counter
@@ -96,7 +100,7 @@ def count_negativeK_line(x1, y1, x2, y2):
                     find = list()
                     find.append(x)
                     find.append(y)
-                    all_points.append(find)
+                    ext_points.append(find)
                     del find
                     counter += 1                    
         return counter
@@ -108,12 +112,53 @@ def count_negativeK_line(x1, y1, x2, y2):
                     find = list()
                     find.append(x)
                     find.append(y)
-                    all_points.append(find)
+                    ext_points.append(find)
                     del find
                     counter += 1
         return counter
     else:
         return 0
+
+def chek_not_y():    
+    for i in range(len(points)):
+        if i != len(points) - 1:
+            if not points[i][0] == points[i + 1][0]:
+                if not points[i][1] == points[i + 1][1]:
+                    if not (points[i + 1][1] - points[i][1])/(points[i + 1][0] - points[i][0]) == 1:
+                        if not (points[i + 1][1] - points[i][1])/(points[i + 1][0] - points[i][0]) == -1:
+                            if points[i][1] < points[i + 1][1]:
+                                for y in range(points[i][1] + 1, points[i + 1][1]):
+                                    find = list()
+                                    find.append(line(y, points[i][0], points[i][1], points[i+1][0], points[i+1][1]))
+                                    find.append(y)
+                                    ext_points.append(find)
+                            elif points[i][1] > points[i+1][1]:
+                                for y in range(points[i+1][1] + 1, points[i][1]):
+                                    find = list()
+                                    find.append(line(y, points[i][0], points[i][1], points[i+1][0], points[i+1][1]))
+                                    find.append(y)
+                                    ext_points.append(find)
+        elif i == len(points):
+            if not points[i][0] == points[0][0]:
+                if not points[i][1] == points[0][1]:
+                    if not (points[0][1] - points[i][1])/(points[0][0] - points[i][0]) == 1:
+                        if not (points[0][1] - points[i][1])/(points[0][0] - points[i][0]) == -1:
+                            if points[i][1] < points[0][1]:
+                                for y in range(points[i][1] + 1, points[0][1]):
+                                    find = list()
+                                    find.append(line(y, points[i][0], points[i][1], points[0][0], points[0][1]))
+                                    find.append(y)
+                                    ext_points.append(find)
+                            elif points[i][1] > points[0][1]:
+                                for y in range(points[0][1] + 1, points[i][1]):
+                                    find = list()
+                                    find.append(line(y, points[i][0], points[i][1], points[0][0], points[0][1]))
+                                    find.append(y)
+                                    ext_points.append(find)
+        else:
+            return 0
+            
+    
 
 def count_ext_points(x1, y1, x2, y2):
     if(x1 == x2):
@@ -136,10 +181,13 @@ def count_inter_points():
 if __name__ == '__main__':
     points = [
             [6, 1],
-            [1, 6],
-            [6, 11],
-            [11, 6]]
-    all_points = list()
+            [1, 2],
+            [1, 5],
+            [3, 7],
+            [7, 6],
+            [6, 4],
+            [9, 4]]
+    ext_points = list()
     
     counter_ext = 0
     for i in range(len(points)):
@@ -151,11 +199,11 @@ if __name__ == '__main__':
     print(counter_ext)
     
     #print(all_points)
-    all_points = [x for x in all_points if x not in points]
+    ext_points = [x for x in ext_points if x not in points]
     for i in range(len(points)):
-        all_points.append(points[i])
-    print(all_points)
-    print(len(all_points))
+        ext_points.append(points[i])
+    print(ext_points)
+    print(len(ext_points))
     
     maxy = 0
     maxx = 0
@@ -174,3 +222,28 @@ if __name__ == '__main__':
     print("miny " + str(miny))
     print("maxx " + str(maxx))
     print("maxy " + str(maxy))
+    
+    chek_not_y()
+    print(ext_points)
+    
+    counter_inter = 0
+    
+    for y in range(maxy - 1, miny, -1):
+        now_x = list()
+        for i in range(len(ext_points)):
+            if ext_points[i][1] == y:
+                now_x.append(ext_points[i][0])
+        now_x.sort()
+        #print(now_x)
+        if len(now_x) % 2 == 0:
+            for i in range(0, len(now_x), 2):
+                for j in range(math.ceil(now_x[i]), math.ceil(now_x[i + 1]) - 1):
+                    counter_inter += 1
+        elif len(now_x) % 2 != 0:
+            for i in range(len(now_x) - 1):
+                for j in range(math.ceil(now_x[i]), math.ceil(now_x[i + 1]) - 1):
+                    counter_inter += 1
+        print(str(now_x) + " " + str(counter_inter))
+        del now_x                        
+    print(counter_inter)
+    print(counter_inter + (counter_ext * 0.5) - 1)
