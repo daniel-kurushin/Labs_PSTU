@@ -6,8 +6,6 @@ Created on 2.09.2021
 @author: honepa
 """
 
-import math
-
 def chek_line(x, y, x1, x2, y1, y2):
     if y == (x * (y2 - y1) - x1 * (y2 + y1) + y1 * (x2 + x1))/(x2 - x1):
         return 1
@@ -16,6 +14,14 @@ def chek_line(x, y, x1, x2, y1, y2):
 
 def line(y, x1, y1, x2, y2):
     return (y * (x2 - x1) - y1 * (x2 + x1) + x1 * (y2 + y1))/(y2 - y1)
+
+def ceil(num):
+    if type(num) == type(6.5):
+        return int(num) + 1
+    elif type(num) == type(6):
+        return num
+    else:
+        return 0
 
 def count_pipe_line(x1, y1, x2, y2):
     counter = 0
@@ -52,7 +58,7 @@ def count_horizon_line(x1, y1, x2, y2):
             counter += 1
         return counter
     elif x1 > x2:
-        for y in range(x2, x1 + 1):
+        for x in range(x2, x1 + 1):
             find = list()
             find.append(x)
             find.append(y1)
@@ -174,11 +180,40 @@ def count_ext_points(x1, y1, x2, y2):
         else:
             return 0
 
+def count_ceil(x0, x1):
+    counter = 0 
+    if type(x0) == type(x1) == type(1): 
+        counter = x1 - x0 - 1 
+        return counter 
+    elif type(x0) == type(1) and type(x1) == type(6.5): 
+        counter = ceil(x1) -x0 - 1 
+        return counter 
+    elif type(x0) == type(6.5) and type(x1) == type(1): 
+        counter = x1 - ceil(x0) 
+        return counter 
+    elif type(x0) == type(6.5) and type(x1) == type(6.5): 
+        counter = ceil(x1) - ceil(x0) 
+        return counter 
+    else:
+        return 0 
+
 def count_inter_points():
     counter = 0
     return counter
 
 if __name__ == '__main__':
+    """
+    points = [
+            [6, 1],
+            [1, 3],
+            [5, 5],
+            [3, 8],
+            [6, 10],
+            [9, 8],
+            [7, 5],
+            [11, 3]]
+    """
+    """
     points = [
             [6, 1],
             [1, 2],
@@ -187,6 +222,28 @@ if __name__ == '__main__':
             [7, 6],
             [6, 4],
             [9, 4]]
+    """
+    
+    points = [
+            [6, 1],
+            [1, 6],
+            [6, 11],
+            [11, 6]]
+    
+    """
+    points = [
+            [1, 1],
+            [1, 2],
+            [2, 4],
+            [3, 2],
+            [5, 2],
+            [6, 4],
+            [7, 2],
+            [8, 2],
+            [9, 4],
+            [10, 2],
+            [10, 1]]
+    """
     ext_points = list()
     
     counter_ext = 0
@@ -228,7 +285,7 @@ if __name__ == '__main__':
     
     counter_inter = 0
     
-    for y in range(maxy - 1, miny, -1):
+    for y in range(maxy, miny, -1):
         now_x = list()
         for i in range(len(ext_points)):
             if ext_points[i][1] == y:
@@ -237,11 +294,10 @@ if __name__ == '__main__':
         #print(now_x)
         if len(now_x) % 2 == 0:
             for i in range(0, len(now_x), 2):
-                for j in range(math.ceil(now_x[i]), math.ceil(now_x[i + 1]) - 1):
-                    counter_inter += 1
+                counter_inter += count_ceil(now_x[i], now_x[i + 1])
         elif len(now_x) % 2 != 0:
             for i in range(len(now_x) - 1):
-                for j in range(math.ceil(now_x[i]), math.ceil(now_x[i + 1]) - 1):
+                for j in range(ceil(now_x[i]), ceil(now_x[i + 1]) - 1):
                     counter_inter += 1
         print(str(now_x) + " " + str(counter_inter))
         del now_x                        
