@@ -5,21 +5,11 @@ Created on 2.09.2021
 
 @author: honepa
 """
+import os
 
 def chek_line(x, y, x1, x2, y1, y2):
     if y == (x * (y2 - y1) - x1 * (y2 + y1) + y1 * (x2 + x1))/(x2 - x1):
         return 1
-    else:
-        return 0
-
-def line(y, x1, y1, x2, y2):
-    return (y * (x2 - x1) - y1 * (x2 + x1) + x1 * (y2 + y1))/(y2 - y1)
-
-def ceil(num):
-    if type(num) == type(6.5):
-        return int(num) + 1
-    elif type(num) == type(6):
-        return num
     else:
         return 0
 
@@ -125,46 +115,6 @@ def count_negativeK_line(x1, y1, x2, y2):
     else:
         return 0
 
-def chek_not_y():    
-    for i in range(len(points)):
-        if i != len(points) - 1:
-            if not points[i][0] == points[i + 1][0]:
-                if not points[i][1] == points[i + 1][1]:
-                    if not (points[i + 1][1] - points[i][1])/(points[i + 1][0] - points[i][0]) == 1:
-                        if not (points[i + 1][1] - points[i][1])/(points[i + 1][0] - points[i][0]) == -1:
-                            if points[i][1] < points[i + 1][1]:
-                                for y in range(points[i][1] + 1, points[i + 1][1]):
-                                    find = list()
-                                    find.append(line(y, points[i][0], points[i][1], points[i+1][0], points[i+1][1]))
-                                    find.append(y)
-                                    ext_points.append(find)
-                            elif points[i][1] > points[i+1][1]:
-                                for y in range(points[i+1][1] + 1, points[i][1]):
-                                    find = list()
-                                    find.append(line(y, points[i][0], points[i][1], points[i+1][0], points[i+1][1]))
-                                    find.append(y)
-                                    ext_points.append(find)
-        elif i == len(points):
-            if not points[i][0] == points[0][0]:
-                if not points[i][1] == points[0][1]:
-                    if not (points[0][1] - points[i][1])/(points[0][0] - points[i][0]) == 1:
-                        if not (points[0][1] - points[i][1])/(points[0][0] - points[i][0]) == -1:
-                            if points[i][1] < points[0][1]:
-                                for y in range(points[i][1] + 1, points[0][1]):
-                                    find = list()
-                                    find.append(line(y, points[i][0], points[i][1], points[0][0], points[0][1]))
-                                    find.append(y)
-                                    ext_points.append(find)
-                            elif points[i][1] > points[0][1]:
-                                for y in range(points[0][1] + 1, points[i][1]):
-                                    find = list()
-                                    find.append(line(y, points[i][0], points[i][1], points[0][0], points[0][1]))
-                                    find.append(y)
-                                    ext_points.append(find)
-        else:
-            return 0
-            
-    
 
 def count_ext_points(x1, y1, x2, y2):
     if(x1 == x2):
@@ -180,26 +130,44 @@ def count_ext_points(x1, y1, x2, y2):
         else:
             return 0
 
-def count_ceil(x0, x1):
-    counter = 0 
-    if type(x0) == type(x1) == type(1): 
-        counter = x1 - x0 - 1 
-        return counter 
-    elif type(x0) == type(1) and type(x1) == type(6.5): 
-        counter = ceil(x1) -x0 - 1 
-        return counter 
-    elif type(x0) == type(6.5) and type(x1) == type(1): 
-        counter = x1 - ceil(x0) 
-        return counter 
-    elif type(x0) == type(6.5) and type(x1) == type(6.5): 
-        counter = ceil(x1) - ceil(x0) 
-        return counter 
-    else:
-        return 0 
+def point_in_field(point):
+    x_point = point[0]
+    y_point = point[1]
+    in_field = False
+    for i in range(len(points)):
+        if i != len(points) - 1:
+            x_first = points[i][0]
+            y_first = points[i][1]
+            x_second = points[i + 1][0]
+            y_second = points[i + 1][1]
+            if (y_first < y_point and y_point <= y_second) or (y_second < y_point and y_point <= y_first):
+                if (x_first + (y_point - y_first) / (y_second - y_first) * (x_second - x_first)) < x_point:
+                    in_field = not in_field
+        else:
+            x_first = points[i][0]
+            y_first = points[i][1]
+            x_second = points[0][0]
+            y_second = points[0][1]
+            if (y_first < y_point and y_point <= y_second) or (y_second < y_point and y_point <= y_first):
+                if (x_first + (y_point - y_first) / (y_second - y_first) * (x_second - x_first)) < x_point:
+                    in_field = not in_field
+    return in_field
 
 def count_inter_points():
-    counter = 0
-    return counter
+    counter_inter = 0
+    min_x, max_x = min([x[0] for x in points ]), max([x[0] for x in points ])
+    min_y, max_y = min([x[1] for x in points ]), max([x[1] for x in points ])
+    for x in range(min_x, max_x + 1):
+        for y in range(min_y, max_y + 1):
+            point = list()
+            point.append(x); point.append(y)
+            if point not in ext_points and point_in_field(point):
+                inter_points.append(point)
+                counter_inter += 1
+            del point
+    return counter_inter
+            
+    
 
 if __name__ == '__main__':
     """
@@ -244,62 +212,67 @@ if __name__ == '__main__':
             [10, 2],
             [10, 1]]
     """
-    ext_points = list()
+    """
+    #42
+    points = [
+            [1, 1],
+            [1, 8],
+            [9, 8],
+            [9, 7],
+            [8, 5],
+            [5, 7],
+            [3, 4],
+            [5, 2],
+            [8, 4],
+            [9, 2],
+            [9, 1]]
+    """
     
+    points = [
+            [0,0],
+            [0,5],
+            [7,5],
+            [5,2],
+            [3,4],
+            [1,2],
+            [1,1],
+            [3,3],
+            [5,2],
+            [7,4],
+            [7,0],]
+    inter_points = list()
+    ext_points = list()        
     counter_ext = 0
     for i in range(len(points)):
         if i != len(points) - 1:
             counter_ext += count_ext_points(points[i][0], points[i][1], points[i + 1][0], points[i + 1][1]) - 2
         elif i == len(points) - 1:
             counter_ext += count_ext_points(points[i][0], points[i][1], points[0][0], points[0][1]) - 2
-    counter_ext += len(points)
-    print(counter_ext)
-    
-    #print(all_points)
     ext_points = [x for x in ext_points if x not in points]
     for i in range(len(points)):
         ext_points.append(points[i])
-    print(ext_points)
-    print(len(ext_points))
-    
-    maxy = 0
-    maxx = 0
-    minx = points[0][0]
-    miny = points[0][1]
+    clear_points = list()
+    for i in ext_points:
+        if i not in clear_points:
+            clear_points.append(i)
+    ext_points = clear_points
+    G = len(ext_points)
+    B = count_inter_points()
+    S = 0
+    S = B + G / 2 - 1 
+    answer = "S = " + str(B) + str(" + ") + str(G) + " / 2 - 1 = " + str(S)
+    print(answer)
+    ans = open("answer", 'w')
+    ans.write(answer)
+    ans.close()
+    file = open("ext_points", 'w')
+    file_inter_points = open("inter_points", 'w')
     for i in range(len(points)):
-        if minx > points[i][0]:
-            minx = points[i][0]
-        if miny > points[i][1]:
-            miny = points[i][1]
-        if maxy < points[i][1]:
-            maxy = points[i][1]
-        if maxx < points[i][0]:
-            maxx = points[i][0]
-    print("minx " + str(minx))
-    print("miny " + str(miny))
-    print("maxx " + str(maxx))
-    print("maxy " + str(maxy))
-    
-    chek_not_y()
-    print(ext_points)
-    
-    counter_inter = 0
-    
-    for y in range(maxy, miny, -1):
-        now_x = list()
-        for i in range(len(ext_points)):
-            if ext_points[i][1] == y:
-                now_x.append(ext_points[i][0])
-        now_x.sort()
-        #print(now_x)
-        if len(now_x) % 2 == 0:
-            for i in range(0, len(now_x), 2):
-                counter_inter += count_ceil(now_x[i], now_x[i + 1])
-        elif len(now_x) % 2 != 0:
-            for i in range(len(now_x) - 1):
-                for j in range(ceil(now_x[i]), ceil(now_x[i + 1]) - 1):
-                    counter_inter += 1
-        print(str(now_x) + " " + str(counter_inter))
-        del now_x                        
-    print(counter_inter)
-    print(counter_inter + (counter_ext * 0.5) - 1)
+        poin = str(points[i][0]) + " " + str(points[i][1])
+        file.write(poin + '\n')
+    file.close()
+    for i in range(len(inter_points)):
+        poin = str(inter_points[i][0]) + " " + str(inter_points[i][1])
+        file_inter_points.write(poin + '\n')
+    file_inter_points.close()
+    os.system("./ploting.sh")
