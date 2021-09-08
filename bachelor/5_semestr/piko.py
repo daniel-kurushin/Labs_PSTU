@@ -6,6 +6,7 @@ Created on 2.09.2021
 @author: honepa
 """
 import os
+from points import points
 
 def chek_line(x, y, x1, x2, y1, y2):
     if y == (x * (y2 - y1) - x1 * (y2 + y1) + y1 * (x2 + x1))/(x2 - x1):
@@ -170,76 +171,6 @@ def count_inter_points():
     
 
 if __name__ == '__main__':
-    """
-    points = [
-            [6, 1],
-            [1, 3],
-            [5, 5],
-            [3, 8],
-            [6, 10],
-            [9, 8],
-            [7, 5],
-            [11, 3]]
-    """
-    """
-    points = [
-            [6, 1],
-            [1, 2],
-            [1, 5],
-            [3, 7],
-            [7, 6],
-            [6, 4],
-            [9, 4]]
-    """
-    
-    points = [
-            [6, 1],
-            [1, 6],
-            [6, 11],
-            [11, 6]]
-    
-    """
-    points = [
-            [1, 1],
-            [1, 2],
-            [2, 4],
-            [3, 2],
-            [5, 2],
-            [6, 4],
-            [7, 2],
-            [8, 2],
-            [9, 4],
-            [10, 2],
-            [10, 1]]
-    """
-    """
-    #42
-    points = [
-            [1, 1],
-            [1, 8],
-            [9, 8],
-            [9, 7],
-            [8, 5],
-            [5, 7],
-            [3, 4],
-            [5, 2],
-            [8, 4],
-            [9, 2],
-            [9, 1]]
-    """
-    
-    points = [
-            [0,0],
-            [0,5],
-            [7,5],
-            [5,2],
-            [3,4],
-            [1,2],
-            [1,1],
-            [3,3],
-            [5,2],
-            [7,4],
-            [7,0],]
     inter_points = list()
     ext_points = list()        
     counter_ext = 0
@@ -262,15 +193,25 @@ if __name__ == '__main__':
     S = B + G / 2 - 1 
     answer = "S = " + str(B) + str(" + ") + str(G) + " / 2 - 1 = " + str(S)
     print(answer)
+    
     ans = open("answer", 'w')
     ans.write(answer)
     ans.close()
-    file = open("ext_points", 'w')
+    
+    file_ext_points = open("ext_points", 'w')
+    file_points = open("points", 'w')
     file_inter_points = open("inter_points", 'w')
+    
+    for i in range(len(ext_points)):
+        poin = str(ext_points[i][0]) + " " + str(ext_points[i][1])
+        file_ext_points.write(poin + '\n')
+    file_ext_points.close()
     for i in range(len(points)):
         poin = str(points[i][0]) + " " + str(points[i][1])
-        file.write(poin + '\n')
-    file.close()
+        file_points.write(poin + '\n')
+    poin = str(points[0][0]) + " " + str(points[0][1])
+    file_points.write(poin + '\n')
+    file_points.close()
     for i in range(len(inter_points)):
         poin = str(inter_points[i][0]) + " " + str(inter_points[i][1])
         file_inter_points.write(poin + '\n')
