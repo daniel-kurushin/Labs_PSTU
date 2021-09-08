@@ -9,33 +9,16 @@ import os
 from points import points
 
 def chek_line(x, y, x1, x2, y1, y2):
-    if y == (x * (y2 - y1) - x1 * (y2 + y1) + y1 * (x2 + x1))/(x2 - x1):
-        return 1
-    else:
-        return 0
+    return y == (x * (y2 - y1) - x1 * (y2 + y1) + y1 * (x2 + x1))/(x2 - x1):
 
 def count_pipe_line(x1, y1, x2, y2):
-    counter = 0
     if y1 < y2:
         for y in range(y1, y2 + 1):
-            find = list()
-            find.append(x1)
-            find.append(y)
-            ext_points.append(find)
-            del find
-            counter += 1
-        return counter
+            ext_points.append([x1, y])
     elif y1 > y2:
         for y in range(y2, y1 + 1):
-            find = list()
-            find.append(x1)
-            find.append(y)
-            ext_points.append(find)
-            del find
-            counter += 1
-        return counter
-    else:
-        return counter
+            ext_points.append([x1, y])
+return len(ext_points)
 
 def count_horizon_line(x1, y1, x2, y2):
     counter = 0
@@ -118,18 +101,18 @@ def count_negativeK_line(x1, y1, x2, y2):
 
 
 def count_ext_points(x1, y1, x2, y2):
+    rez = 0
     if(x1 == x2):
-        return count_pipe_line(x1, y1, x2, y2)
+        rez = count_pipe_line(x1, y1, x2, y2)
     elif y1 == y2:
-        return count_horizon_line(x1, y1, x2, y2)
+        rez =  count_horizon_line(x1, y1, x2, y2)
     else:
         k = (y2 - y1) / (x2 - x1)
         if k > 0:
-            return count_pozitiveK_line(x1, y1, x2, y2)
+            rez =  count_pozitiveK_line(x1, y1, x2, y2)
         elif k < 0:
-            return count_negativeK_line(x1, y1, x2, y2)
-        else:
-            return 0
+            rez =  count_negativeK_line(x1, y1, x2, y2)
+    return rez
 
 def point_in_field(point):
     x_point = point[0]
