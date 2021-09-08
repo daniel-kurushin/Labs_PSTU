@@ -9,10 +9,7 @@ import os
 from points import points
 
 def chek_line(x, y, x1, x2, y1, y2):
-    if y == (x * (y2 - y1) - x1 * (y2 + y1) + y1 * (x2 + x1))/(x2 - x1):
-        return 1
-    else:
-        return 0
+    return y == (x * (y2 - y1) - x1 * (y2 + y1) + y1 * (x2 + x1))/(x2 - x1):
 
 def count_pipe_line(x1, y1, x2, y2):
     counter = 0
